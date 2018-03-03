@@ -14,7 +14,7 @@ def static(path):
 @bottle.post('/start')
 def start():
     return {
-        'color': 'green',
+        'color': 'red',
         'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
@@ -136,7 +136,7 @@ def move():
         w1 = w1 + 1
 
     playerLocation = data['you']['body']['data']
-    if data['you']['health'] == 99:
+    if data['you']['health'] == 100:
         print "just ate"
         q = 0
     for i in range(len(playerLocation)-q):
@@ -148,9 +148,10 @@ def move():
     enemiesLocation = data['snakes']['data']
     for i in range(len(enemiesLocation)):
         snake = data['snakes']['data'][i]['body']['data']
-        if data['snakes']['data'][i]['health'] == 99:
+        if data['snakes']['data'][i]['health'] == 100:
             p = 0
-        for j in range(len(snake)-p):
+        for j in range(len(snake) - p):
+            
             a = [[snake[j]['x'], snake[j]['y']]]
             walls.extend(a)
             p = 1
