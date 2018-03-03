@@ -12,7 +12,7 @@ def static(path):
 def start():
     return {
         'color': 'cyan',
-        'head_url': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/31/BruceBorn1984.JPG/220px-BruceBorn1984.JPG',
+        'head_url': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/31/BruceBorn1984.JPG/220px-BruceBorn1984.jpg',
         'name': 'Big Dick',
         'head_type': 'tongue',
         'tail_type': 'curled',
