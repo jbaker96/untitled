@@ -2,7 +2,7 @@ import bottle
 import os
 import random
 import json
-import numpy as np
+#import numpy as np
 
 @bottle.route('/static/<path:path>')
 def static(path):
