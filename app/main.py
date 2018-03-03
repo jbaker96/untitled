@@ -14,7 +14,7 @@ def static(path):
 @bottle.post('/start')
 def start():
     return {
-        'color': 'red',
+        'color': 'cyan',
         'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
@@ -104,9 +104,9 @@ def move():
     player_body = data['you']['body']['data']
     my_size = len(player_body)
     
-    cutoff = 50
+    cutoff = 1005
     boardsize = (height+1)*(width+1)
-    invperctosafe = 20
+    invperctosafe = 2
     optisize = boardsize/invperctosafe
     walls = []                                                                                 #CREATING WALLS ARRAY
     
