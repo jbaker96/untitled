@@ -5,7 +5,7 @@ import json
 
 @bottle.route('/')
 def static():
-    return "we in this bitch"
+    return "we in this"
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -14,7 +14,7 @@ def static(path):
 @bottle.post('/start')
 def start():
     return {
-        'color': 'cyan',
+        'color': 'green',
         'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
@@ -29,8 +29,6 @@ def FindTail(a, walls, checked, tail):
     if a in checked:
         return False
     checked.extend([a])
-
-    print checked
 
     tailX = tail[0] - a[0]
     tailY = tail[1] - a[1]
