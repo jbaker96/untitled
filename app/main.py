@@ -136,18 +136,19 @@ def move():
         w1 = w1 + 1
 
     playerLocation = data['you']['body']['data']
-    if data['you']['health'] == 100:
+    if data['you']['health'] == 99:
         print "just ate"
         q = 0
     for i in range(len(playerLocation)-q):
         a = [[playerLocation[i]['x'], playerLocation[i]['y']]]
         walls.extend(a)
+    print walls
 
 
     enemiesLocation = data['snakes']['data']
     for i in range(len(enemiesLocation)):
         snake = data['snakes']['data'][i]['body']['data']
-        if data['snakes']['data'][i]['health'] == 100:
+        if data['snakes']['data'][i]['health'] == 99:
             p = 0
         for j in range(len(snake)-p):
             a = [[snake[j]['x'], snake[j]['y']]]
