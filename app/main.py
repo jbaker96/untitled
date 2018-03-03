@@ -4,6 +4,10 @@ import random
 import json
 #import numpy as np
 
+@bottle.route('/')
+def static():
+    return "we in this bitch"
+
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
@@ -443,6 +447,6 @@ application = bottle.default_app()
 if __name__ == '__main__':
     bottle.run(
         application,
-        host=os.getenv('IP', '192.168.1.70'),
+        host=os.getenv('IP', '192.168.96.121'),
         port=os.getenv('PORT', '8080'),
         debug = True)
