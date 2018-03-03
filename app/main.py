@@ -2,7 +2,6 @@ import bottle
 import os
 import random
 import json
-#import numpy as np
 
 @bottle.route('/')
 def static():
@@ -15,8 +14,8 @@ def static(path):
 @bottle.post('/start')
 def start():
     return {
-        'color': 'yellow',
-        'head_url': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/CarterIII.jpg/220px-CarterIII.jpg',
+        'color': 'red',
+        'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
     }
@@ -30,6 +29,8 @@ def FindTail(a, walls, checked, tail):
     if a in checked:
         return False
     checked.extend([a])
+
+    print checked
 
     tailX = tail[0] - a[0]
     tailY = tail[1] - a[1]
@@ -103,7 +104,7 @@ def move():
     player_body = data['you']['body']['data']
     my_size = len(player_body)
     
-    cutoff = 1005
+    cutoff = 50
     boardsize = (height+1)*(width+1)
     invperctosafe = 20
     optisize = boardsize/invperctosafe
@@ -138,6 +139,7 @@ def move():
 
     playerLocation = data['you']['body']['data']
     if data['you']['health'] == 100:
+        print "just ate"
         q = 0
     for i in range(len(playerLocation)-q):
         a = [[playerLocation[i]['x'], playerLocation[i]['y']]]
@@ -712,6 +714,26 @@ def move():
             }
 
         j = j + 1
+
+    if([head[0], head[1]+1] not in walls):
+        return {
+            'move': 'down'
+    }
+
+    if([head[0], head[1]-1] not in walls):
+        return {
+            'move': 'up'
+    }
+
+    if([head[0] - 1, head[1]] not in walls):
+        return {
+            'move': 'left'
+    }
+
+    if([head[0] + 1, head[1]] not in walls):
+        return {
+            'move': 'right'
+    }
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
