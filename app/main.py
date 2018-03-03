@@ -4,6 +4,10 @@ import random
 import json
 #import numpy as np
 
+@bottle.route('/')
+def static():
+    return "we in this bitch"
+
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
@@ -12,7 +16,7 @@ def static(path):
 def start():
     return {
         'color': 'cyan',
-        'head_url': 'https://1.bp.blogspot.com/-yXQASSUQlXo/VyNcD6hUryI/AAAAAAABFkg/btYyPTjg2SIUkDz2KsgK65KAtngR9iedgCLcB/s1600/greska.jpg',
+        'head_url': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/31/BruceBorn1984.JPG/220px-BruceBorn1984.jpg',
         'name': 'Big Dick',
         'head_type': 'tongue',
         'tail_type': 'curled',
@@ -443,6 +447,6 @@ application = bottle.default_app()
 if __name__ == '__main__':
     bottle.run(
         application,
-        host=os.getenv('IP', '192.168.1.70'),
+        host=os.getenv('IP', '192.168.96.121'),
         port=os.getenv('PORT', '8080'),
         debug = True)
