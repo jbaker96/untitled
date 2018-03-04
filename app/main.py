@@ -311,131 +311,133 @@ def move():
             j = j + 1
 
 
+    if tail not in walls:
+        if data['you']['health'] >= cutoff:
+            
+            
+            tailX = tail[0] - head[0]
+            tailY = tail[1] - head[1]
+            checked = []
 
-    if data['you']['health'] >= cutoff:
-        tailX = tail[0] - head[0]
-        tailY = tail[1] - head[1]
-        checked = []
+            headU = [0, -1]
+            headD = [0, 1]
+            headL = [-1, 0]
+            headR = [1, 0]
 
-        headU = [0, -1]
-        headD = [0, 1]
-        headL = [-1, 0]
-        headR = [1, 0]
-
-        if abs(tailX) >= abs(tailY):
-            if tailX > 0:
-                first = headR
-                if tailY >= 0:
-                    second = headD
-                    third = headU
-                    last = headL
+            if abs(tailX) >= abs(tailY):
+                if tailX > 0:
+                    first = headR
+                    if tailY >= 0:
+                        second = headD
+                        third = headU
+                        last = headL
+                    else:
+                        second = headU
+                        third = headD
+                        last = headL
                 else:
-                    second = headU
-                    third = headD
-                    last = headL
+                    first = headL
+                    if tailY >= 0:
+                        second = headD
+                        third = headU
+                        last = headR
+                    else:
+                        second = headU
+                        third = headD
+                        last = headR
             else:
-                first = headL
-                if tailY >= 0:
-                    second = headD
-                    third = headU
-                    last = headR
+                if tailY > 0:
+                    first = headD
+                    if tailX >= 0:
+                        second = headR
+                        third = headL
+                        last = headU
+                    else:
+                        second = headL
+                        third = headR
+                        last = headU
                 else:
-                    second = headU
-                    third = headD
-                    last = headR
-        else:
-            if tailY > 0:
-                first = headD
-                if tailX >= 0:
-                    second = headR
-                    third = headL
-                    last = headU
-                else:
-                    second = headL
-                    third = headR
-                    last = headU
-            else:
-                first = headU
-                if tailX >= 0:
-                    second = headR
-                    third = headL
-                    last = headD
-                else:
-                    second = headL
-                    third = headR
-                    last = headD
+                    first = headU
+                    if tailX >= 0:
+                        second = headR
+                        third = headL
+                        last = headD
+                    else:
+                        second = headL
+                        third = headR
+                        last = headD
 
-        if FindTail([head[0] + first[0], head[1] + first[1]], walls, checked, tail) == True:
-            if first == headU:
-                return {
-                    'move': 'up'
-            }
-            if first == headD:
-                return {
-                    'move': 'down'
-            }
-            if first == headL:
-                return {
-                    'move': 'left'
-            }
-            if first == headR:
-                return {
-                    'move': 'right'
-            }
+            if FindTail([head[0] + first[0], head[1] + first[1]], walls, checked, tail) == True:
+                if first == headU:
+                    return {
+                        'move': 'up'
+                }
+                if first == headD:
+                    return {
+                        'move': 'down'
+                }
+                if first == headL:
+                    return {
+                        'move': 'left'
+                }
+                if first == headR:
+                    return {
+                        'move': 'right'
+                }
 
-        if FindTail([head[0] + second[0], head[1] + second[1]], walls, checked, tail) == True:
-            if second == headU:
-                return {
-                    'move': 'up'
-            }
-            if second == headD:
-                return {
-                    'move': 'down'
-            }
-            if second == headL:
-                return {
-                    'move': 'left'
-            }
-            if second == headR:
-                return {
-                    'move': 'right'
-            }
+            if FindTail([head[0] + second[0], head[1] + second[1]], walls, checked, tail) == True:
+                if second == headU:
+                    return {
+                        'move': 'up'
+                }
+                if second == headD:
+                    return {
+                        'move': 'down'
+                }
+                if second == headL:
+                    return {
+                        'move': 'left'
+                }
+                if second == headR:
+                    return {
+                        'move': 'right'
+                }
 
-        if FindTail([head[0] + third[0], head[1] + third[1]], walls, checked, tail) == True:
-            if third == headU:
-                return {
-                    'move': 'up'
-            }
-            if third == headD:
-                return {
-                    'move': 'down'
-            }
-            if third == headL:
-                return {
-                    'move': 'left'
-            }
-            if third == headR:
-                return {
-                    'move': 'right'
-            }
+            if FindTail([head[0] + third[0], head[1] + third[1]], walls, checked, tail) == True:
+                if third == headU:
+                    return {
+                        'move': 'up'
+                }
+                if third == headD:
+                    return {
+                        'move': 'down'
+                }
+                if third == headL:
+                    return {
+                        'move': 'left'
+                }
+                if third == headR:
+                    return {
+                        'move': 'right'
+                }
 
-        if FindTail([head[0] + last[0], head[1] + last[1]], walls, checked, tail) == True:
-            if last == headU:
-                return {
-                    'move': 'up'
-            }
-            if last == headD:
-                return {
-                    'move': 'down'
-            }
-            if last == headL:
-                return {
-                    'move': 'left'
-            }
-            if last == headR:
-                return {
-                    'move': 'right'
-            }
+            if FindTail([head[0] + last[0], head[1] + last[1]], walls, checked, tail) == True:
+                if last == headU:
+                    return {
+                        'move': 'up'
+                }
+                if last == headD:
+                    return {
+                        'move': 'down'
+                }
+                if last == headL:
+                    return {
+                        'move': 'left'
+                }
+                if last == headR:
+                    return {
+                        'move': 'right'
+                }
 
     if data['you']['health'] < cutoff:        
         i = 0
@@ -724,130 +726,130 @@ def move():
 
         j = j + 1
     
-    
-    tailX = tail[0] - head[0]
-    tailY = tail[1] - head[1]
-    checked = []
+    if tail not in walls:
+        tailX = tail[0] - head[0]
+        tailY = tail[1] - head[1]
+        checked = []
 
-    headU = [0, -1]
-    headD = [0, 1]
-    headL = [-1, 0]
-    headR = [1, 0]
+        headU = [0, -1]
+        headD = [0, 1]
+        headL = [-1, 0]
+        headR = [1, 0]
 
-    if abs(tailX) >= abs(tailY):
-        if tailX > 0:
-            first = headR
-            if tailY >= 0:
-                second = headD
-                third = headU
-                last = headL
+        if abs(tailX) >= abs(tailY):
+            if tailX > 0:
+                first = headR
+                if tailY >= 0:
+                    second = headD
+                    third = headU
+                    last = headL
+                else:
+                    second = headU
+                    third = headD
+                    last = headL
             else:
-                second = headU
-                third = headD
-                last = headL
+                first = headL
+                if tailY >= 0:
+                    second = headD
+                    third = headU
+                    last = headR
+                else:
+                    second = headU
+                    third = headD
+                    last = headR
         else:
-            first = headL
-            if tailY >= 0:
-                second = headD
-                third = headU
-                last = headR
+            if tailY > 0:
+                first = headD
+                if tailX >= 0:
+                    second = headR
+                    third = headL
+                    last = headU
+                else:
+                    second = headL
+                    third = headR
+                    last = headU
             else:
-                second = headU
-                third = headD
-                last = headR
-    else:
-        if tailY > 0:
-            first = headD
-            if tailX >= 0:
-                second = headR
-                third = headL
-                last = headU
-            else:
-                second = headL
-                third = headR
-                last = headU
-        else:
-            first = headU
-            if tailX >= 0:
-                second = headR
-                third = headL
-                last = headD
-            else:
-                second = headL
-                third = headR
-                last = headD
+                first = headU
+                if tailX >= 0:
+                    second = headR
+                    third = headL
+                    last = headD
+                else:
+                    second = headL
+                    third = headR
+                    last = headD
 
-    if FindTail([head[0] + first[0], head[1] + first[1]], walls, checked, tail) == True:
-        if first == headU:
-            return {
-                'move': 'up'
-        }
-        if first == headD:
-            return {
-                'move': 'down'
-        }
-        if first == headL:
-            return {
-                'move': 'left'
-        }
-        if first == headR:
-            return {
-                'move': 'right'
-        }
+        if FindTail([head[0] + first[0], head[1] + first[1]], walls, checked, tail) == True:
+            if first == headU:
+                return {
+                    'move': 'up'
+            }
+            if first == headD:
+                return {
+                    'move': 'down'
+            }
+            if first == headL:
+                return {
+                    'move': 'left'
+            }
+            if first == headR:
+                return {
+                    'move': 'right'
+            }
 
-    if FindTail([head[0] + second[0], head[1] + second[1]], walls, checked, tail) == True:
-        if second == headU:
-            return {
-                'move': 'up'
-        }
-        if second == headD:
-            return {
-                'move': 'down'
-        }
-        if second == headL:
-            return {
-                'move': 'left'
-        }
-        if second == headR:
-            return {
-                'move': 'right'
-        }
+        if FindTail([head[0] + second[0], head[1] + second[1]], walls, checked, tail) == True:
+            if second == headU:
+                return {
+                    'move': 'up'
+            }
+            if second == headD:
+                return {
+                    'move': 'down'
+            }
+            if second == headL:
+                return {
+                    'move': 'left'
+            }
+            if second == headR:
+                return {
+                    'move': 'right'
+            }
 
-    if FindTail([head[0] + third[0], head[1] + third[1]], walls, checked, tail) == True:
-        if third == headU:
-            return {
-                'move': 'up'
-        }
-        if third == headD:
-            return {
-                'move': 'down'
-        }
-        if third == headL:
-            return {
-                'move': 'left'
-        }
-        if third == headR:
-            return {
-                'move': 'right'
-        }
+        if FindTail([head[0] + third[0], head[1] + third[1]], walls, checked, tail) == True:
+            if third == headU:
+                return {
+                    'move': 'up'
+            }
+            if third == headD:
+                return {
+                    'move': 'down'
+            }
+            if third == headL:
+                return {
+                    'move': 'left'
+            }
+            if third == headR:
+                return {
+                    'move': 'right'
+            }
 
-    if FindTail([head[0] + last[0], head[1] + last[1]], walls, checked, tail) == True:
-        if last == headU:
-            return {
-                'move': 'up'
-        }
-        if last == headD:
-            return {
-                'move': 'down'
-        }
-        if last == headL:
-            return {
-                'move': 'left'
-        }
-        if last == headR:
-            return {
-                'move': 'right'
-        }
+        if FindTail([head[0] + last[0], head[1] + last[1]], walls, checked, tail) == True:
+            if last == headU:
+                return {
+                    'move': 'up'
+            }
+            if last == headD:
+                return {
+                    'move': 'down'
+            }
+            if last == headL:
+                return {
+                    'move': 'left'
+            }
+            if last == headR:
+                return {
+                    'move': 'right'
+            }
 
 
     if([head[0], head[1]+1] not in walls):
