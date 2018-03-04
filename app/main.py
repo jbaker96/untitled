@@ -14,7 +14,7 @@ def static(path):
 @bottle.post('/start')
 def start():
     return {
-        'color': 'red',
+        'color': 'yellow',
         'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
@@ -108,9 +108,9 @@ def move():
     elif numenemy == 3:
         cutoff = 75
     elif numenemy == 4:
-        cutoff == 50
+        cutoff = 50
     else:
-        cutoff == (height + width)
+        cutoff = (height + width)
 
     boardsize = (height+1)*(width+1)
     invperctosafe = 2
