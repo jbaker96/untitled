@@ -18,6 +18,7 @@ def start():
         'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
+        'taunt': 'Who wants to stare at a computer for the rest of their lives?',
     }
 
 def FindTail(a, walls, checked, tail):
@@ -109,7 +110,7 @@ def move():
     elif numenemy == 4:
         cutoff == 50
     else:
-        cutoff == 25
+        cutoff == (height + width)
 
     boardsize = (height+1)*(width+1)
     invperctosafe = 2
