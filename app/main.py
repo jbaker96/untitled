@@ -14,7 +14,7 @@ def static(path):
 @bottle.post('/start')
 def start():
     return {
-        'color': 'yellow',
+        'color': 'gold',
         'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
@@ -165,6 +165,152 @@ def move():
 
     tail = [playerLocation[len(playerLocation)-1]['x'], playerLocation[len(playerLocation)-1]['y']]
     head = [data['you']['body']['data'][0]['x'], data['you']['body']['data'][0]['y']]
+
+    if mysize < 4:
+        i = 0
+        j = 0
+        a = []
+        checked = []
+        
+        while (i < len(data['food']['data'])):
+            b = [[abs(data['food']['data'][i]['x'] - head[0]) + abs(data['food']['data'][i]['y'] - head[1]) , i]]
+            a.extend(b)
+            i = i + 1
+        
+        while (j < len(data['food']['data'])):
+            minval = min(a)
+            a.remove(minval)
+            foodnum = minval[1]
+            FoodX = data['food']['data'][foodnum]['x']
+            FoodY = data['food']['data'][foodnum]['y']
+            
+            goalX = FoodX - head[0]
+            goalY = FoodY - head[1]
+            checked = []
+
+            headU = [0, -1]
+            headD = [0, 1]
+            headL = [-1, 0]
+            headR = [1, 0]
+
+            if abs(goalX) >= abs(goalY):
+                if goalX > 0:
+                    first = headR
+                    if goalY >= 0:
+                        second = headD
+                        third = headU
+                        last = headL
+                    else:
+                        second = headU
+                        third = headD
+                        last = headL
+                else:
+                    first = headL
+                    if goalY >= 0:
+                        second = headD
+                        third = headU
+                        last = headR
+                    else:
+                        second = headU
+                        third = headD
+                        last = headR
+            else:
+                if goalY > 0:
+                    first = headD
+                    if goalX >= 0:
+                        second = headR
+                        third = headL
+                        last = headU
+                    else:
+                        second = headL
+                        third = headR
+                        last = headU
+                else:
+                    first = headU
+                    if goalX >= 0:
+                        second = headR
+                        third = headL
+                        last = headD
+                    else:
+                        second = headL
+                        third = headR
+                        last = headD
+
+            if FindTail([head[0] + first[0], head[1] + first[1]], walls, checked, tail) == True:
+                if first == headU:
+                    return {
+                        'move': 'up'
+                }
+                if first == headD:
+                    return {
+                        'move': 'down'
+                }
+                if first == headL:
+                    return {
+                        'move': 'left'
+                }
+                if first == headR:
+                    return {
+                        'move': 'right'
+                }
+
+            if FindTail([head[0] + second[0], head[1] + second[1]], walls, checked, tail) == True:
+                if second == headU:
+                    return {
+                        'move': 'up'
+                }
+                if second == headD:
+                    return {
+                        'move': 'down'
+                }
+                if second == headL:
+                    return {
+                        'move': 'left'
+                }
+                if second == headR:
+                    return {
+                        'move': 'right'
+                }
+
+            if FindTail([head[0] + third[0], head[1] + third[1]], walls, checked, tail) == True:
+                if third == headU:
+                    return {
+                        'move': 'up'
+                }
+                if third == headD:
+                    return {
+                        'move': 'down'
+                }
+                if third == headL:
+                    return {
+                        'move': 'left'
+                }
+                if third == headR:
+                    return {
+                        'move': 'right'
+                }
+
+            if FindTail([head[0] + last[0], head[1] + last[1]], walls, checked, tail) == True:
+                if last == headU:
+                    return {
+                        'move': 'up'
+                }
+                if last == headD:
+                    return {
+                        'move': 'down'
+                }
+                if last == headL:
+                    return {
+                        'move': 'left'
+                }
+                if last == headR:
+                    return {
+                        'move': 'right'
+                }
+
+            j = j + 1
+
+
 
     if data['you']['health'] >= cutoff:
         tailX = tail[0] - head[0]
