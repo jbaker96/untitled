@@ -14,7 +14,7 @@ def static(path):
 @bottle.post('/start')
 def start():
     return {
-        'color': 'gold',
+        'color': 'black',
         'head_url': 'https://upload.wikimedia.org/wikipedia/en/3/31/BruceBorn1984.JPG',
         'head_type': 'tongue',
         'tail_type': 'curled',
@@ -166,7 +166,7 @@ def move():
     tail = [playerLocation[len(playerLocation)-1]['x'], playerLocation[len(playerLocation)-1]['y']]
     head = [data['you']['body']['data'][0]['x'], data['you']['body']['data'][0]['y']]
 
-    if mysize < 4:
+    if my_size < 4:
         i = 0
         j = 0
         a = []
